@@ -124,10 +124,8 @@ func (e *Engine) tick(ctx context.Context) {
 		e.logger.Error("escalate windows failed", err)
 		e.incErrors()
 	} else if len(escResults) > 0 {
+		s.addEscalated(len(escResults))
 		e.logger.Info("escalated overdue windows", apperr.F("count", len(escResults)))
-		for range escResults {
-			s.addEscalated(0)
-		}
 	}
 
 	// 3. Preempt expired task claims (lease expired → reclaim → reassign).

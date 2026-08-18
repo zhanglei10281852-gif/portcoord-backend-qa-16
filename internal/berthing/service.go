@@ -245,9 +245,7 @@ func (s *Service) EscalateOverdue(ctx context.Context) ([]*domain.EscalationResu
 				apperr.F("window_id", w.ID))
 			continue
 		}
-		if result.ToLevel > result.FromLevel {
-			results = append(results, result)
-		}
+		results = append(results, result)
 	}
 	return results, nil
 }
